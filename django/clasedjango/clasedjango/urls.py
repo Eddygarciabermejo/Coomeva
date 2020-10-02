@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from . import view as local_views
 from posts import views as posts_views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('', local_views.login),
     path('admin/', admin.site.urls),
     path('saludo/<edad>', local_views.saludos),
     path('posts/', posts_views.lists_posts),
-]
+] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
